@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 
 // app.use((req, res, next) => {
 //     res.render('maintenance.hbs', {
+//         pageTitle: "Under Maintenance",
 //         maintMessage: "The site is currently under maintenance and will be back soon."
 //     })
 // })
@@ -72,6 +73,12 @@ app.get('/about', (req, res) => {
         pageTitle: 'About Page',
     });
 
+});
+
+app.get('/projects', (req,res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects'
+    });
 });
 
 //create a route at /bad, respond using response.send sending back an errorMessage within json
