@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
+
 //This app object is how we will interact with express
 var app = express();
 
@@ -14,6 +16,10 @@ hbs.registerHelper('getCurrentYear', () => {
 hbs.registerHelper('screamIt', (toScream) => {
     return toScream.toUpperCase();
 })
+
+hbs.registerHelper('getRepoUrl', () => {
+    return "https://github.com/bkmaibach/andrewm-nodeserver";
+});
 
 
 //This is how you integrate hbs into express
@@ -73,6 +79,8 @@ app.get('/bad', (req, res) => {
     res.send({ errorMessage: "Unable to handle request."});
 });
 
-app.listen(3000, () => {
-    console.log('Server is a go on port 3000')
+//Heroku supplies an environment variable for the listening port.
+//Neat right?
+app.listen(port, () => {
+    console.log(`Application is a go on port ${port}`)
 });
